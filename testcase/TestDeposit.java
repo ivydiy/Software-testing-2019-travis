@@ -65,8 +65,12 @@ public class TestDeposit {
 	public void test1937To1945() {
 		// 從二戰期間存40000元
 		// 利率都是10%
+		double expected = (40000 * Math.pow(1+0.1, 9));
 
-		// when...
+		when(userA.depositAmount()).thenReturn(40000);
+		when(userA.depositInterest(anyInt())).thenReturn(0.1);
+		when(userA.expireEra()).thenReturn("昭和");
+		when(userA.expireYear()).thenReturn(20);
 
 		Deposit deposit = new Deposit(1937);
 		String result = deposit.deposit(userA);
